@@ -810,20 +810,27 @@ function buildEmailPreview(
     footerLinks.className =
         "email-template-footer-links";
 
-    /*
-       These are placeholders for now.
-
-       Later we'll pull Instagram and LinkedIn from the
-       Settings tab of the database.
-    */
-
     footerLinks.innerHTML = `
-        <span>Instagram</span>
-        <span class="email-template-footer-divider">•</span>
-        <span>LinkedIn</span>
-        <span class="email-template-footer-divider">•</span>
-        <span>Unsubscribe</span>
-    `;
+    <a href="https://www.instagram.com/alpfaiit?psln=ZDNlZDc0MzIxNw=="
+       target="_blank"
+       rel="noopener noreferrer"
+       style="color: #ffffff; text-decoration: none;">
+       Instagram
+    </a>
+
+    <span class="email-template-footer-divider">•</span>
+
+    <a href="https://www.linkedin.com/in/alpfa-iit-043320358/"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="color: #ffffff; text-decoration: none;">
+       LinkedIn
+    </a>
+
+    <span class="email-template-footer-divider">•</span>
+
+    <span>Unsubscribe</span>
+`;
 
     footer.append(
         footerBrand,
