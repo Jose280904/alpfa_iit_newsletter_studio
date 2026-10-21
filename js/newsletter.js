@@ -285,7 +285,20 @@ function addNewsletterSection() {
             ></textarea>
         </div>
 
-        <div class="section-button-fields">
+        
+<div class="form-group flyer-fields">
+  <label>Event Flyer / Image <span class="optional-label">Optional</span></label>
+  <input type="file" class="section-image-file" accept="image/png,image/jpeg,image/webp">
+  <button type="button" class="upload-flyer-button secondary-action-button">Upload Flyer</button>
+  <p class="flyer-status" aria-live="polite"></p>
+  <label>Or paste a public HTTPS image URL</label>
+  <input type="url" class="section-image-url" placeholder="https://...">
+  <label>Optional flyer click-through link</label>
+  <input type="url" class="section-image-link" placeholder="https://...">
+  <img class="section-image-preview" alt="Flyer preview" hidden>
+</div>
+
+<div class="section-button-fields">
 
             <div class="form-group">
                 <label>
@@ -532,7 +545,9 @@ function openNewsletterPreview() {
                     title: title,
                     description: description,
                     buttonText: buttonText,
-                    buttonUrl: buttonUrl
+                    buttonUrl: buttonUrl,
+                    imageUrl: sectionElement.querySelector(".section-image-url")?.value.trim() || "",
+                    imageLink: sectionElement.querySelector(".section-image-link")?.value.trim() || ""
                 });
             }
         }
@@ -616,11 +631,16 @@ function buildEmailPreview(
     accent.className =
         "email-template-accent";
 
-    header.append(
-        school,
-        brand,
-        accent
-    );
+    const logo = document.createElement("img");
+    logo.src = "assets/alpfaiitlogo.png";
+    logo.alt = "ALPFA IIT";
+    logo.className = "email-template-logo";
+
+    const logoTitle = document.createElement("div");
+    logoTitle.className = "alpfa-logo-title";
+    logoTitle.textContent = "ALPFA IIT";
+
+    header.append(logo, logoTitle, accent);
 
     /* --------------------------------------------------------
        EMAIL BODY
@@ -694,6 +714,24 @@ function buildEmailPreview(
                     description
                 );
 
+            }
+
+            if (section.imageUrl && /^https:\/\//i.test(section.imageUrl)) {
+                const image = document.createElement("img");
+                image.src = section.imageUrl.replace(
+    /https:\/\/drive\.google\.com\/uc\?export=view&id=([^&]+)/,
+    "https://lh3.googleusercontent.com/d/$1"
+);
+                image.alt = section.title || "ALPFA IIT event flyer";
+                image.className = "email-flyer-image";
+                if (section.imageLink && /^https:\/\//i.test(section.imageLink)) {
+                    const link = document.createElement("a");
+                    link.href = section.imageLink;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.appendChild(image);
+                    sectionContainer.appendChild(link);
+                } else { sectionContainer.appendChild(image); }
             }
 
             /* --------------------------------------------
@@ -1002,7 +1040,9 @@ async function saveNewsletterDraft() {
                     buttonText:
                         buttonText,
                     buttonUrl:
-                        buttonUrl
+                        buttonUrl,
+                    imageUrl: sectionElement.querySelector(".section-image-url")?.value.trim() || "",
+                    imageLink: sectionElement.querySelector(".section-image-link")?.value.trim() || ""
                 });
             }
         }
@@ -1446,7 +1486,20 @@ function restoreNewsletterSections(sections) {
 
                 </div>
 
-                <div class="section-button-fields">
+                
+<div class="form-group flyer-fields">
+  <label>Event Flyer / Image <span class="optional-label">Optional</span></label>
+  <input type="file" class="section-image-file" accept="image/png,image/jpeg,image/webp">
+  <button type="button" class="upload-flyer-button secondary-action-button">Upload Flyer</button>
+  <p class="flyer-status" aria-live="polite"></p>
+  <label>Or paste a public HTTPS image URL</label>
+  <input type="url" class="section-image-url" placeholder="https://...">
+  <label>Optional flyer click-through link</label>
+  <input type="url" class="section-image-link" placeholder="https://...">
+  <img class="section-image-preview" alt="Flyer preview" hidden>
+</div>
+
+<div class="section-button-fields">
 
                     <div class="form-group">
 
@@ -1500,6 +1553,10 @@ function restoreNewsletterSections(sections) {
                 ".section-button-url-input"
             ).value =
                 section.buttonUrl || "";
+
+            sectionElement.querySelector(".section-image-url").value = section.imageUrl || "";
+            sectionElement.querySelector(".section-image-link").value = section.imageLink || "";
+            updateFlyerPreview(sectionElement);
 
             /*
                Connect the Remove button for sections after
@@ -1774,3 +1831,49 @@ async function prepareNewsletterForSending() {
         }
     }
 }
+
+/* ALPFA IIT flyer uploader (admin-only, 4 MB maximum). */
+function updateFlyerPreview(section) {
+  const field = section.querySelector(".section-image-url");
+  const preview = section.querySelector(".section-image-preview");
+  if (!field || !preview) return;
+  const url = field.value.trim().replace(
+    /^https:\/\/drive\.google\.com\/uc\?export=view&id=([^&]+)/,
+    "https://drive.google.com/thumbnail?id=$1&sz=w1600"
+);
+  preview.hidden = !/^https:\/\//i.test(url);
+  if (!preview.hidden) preview.src = url; else preview.removeAttribute("src");
+}
+document.addEventListener("input", function(e) {
+  if (e.target.matches(".section-image-url")) updateFlyerPreview(e.target.closest(".newsletter-section"));
+});
+document.addEventListener("click", async function(e) {
+  const button = e.target.closest(".upload-flyer-button");
+  if (!button) return;
+  const section = button.closest(".newsletter-section");
+  const file = section.querySelector(".section-image-file").files[0];
+  const status = section.querySelector(".flyer-status");
+  if (!file) { status.textContent = "Select an image first."; return; }
+  if (!/^(image\/png|image\/jpeg|image\/webp)$/.test(file.type) || file.size > 4*1024*1024) {
+    status.textContent = "Use JPG, PNG, or WebP under 4 MB."; return;
+  }
+  const sessionToken = sessionStorage.getItem("alpfaAdminSession");
+  if (!sessionToken) { logoutAndRedirect(); return; }
+  button.disabled = true; status.textContent = "Uploading flyer...";
+  try {
+    const base64 = await new Promise((resolve,reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result).split(",")[1]);
+      reader.onerror = reject; reader.readAsDataURL(file);
+    });
+    const response = await fetch(API_URL, {method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({action:"uploadNewsletterImage",sessionToken,fileName:file.name,mimeType:file.type,base64})});
+    const result = await response.json();
+    if (!result.success) throw new Error(result.message || "Upload failed");
+    section.querySelector(".section-image-url").value = result.url;
+    updateFlyerPreview(section);
+    markNewsletterUnsaved();
+    status.textContent = "Uploaded. Save your draft to keep the flyer.";
+  } catch(error) { status.textContent = error.message || "Upload failed."; }
+  finally { button.disabled = false; }
+});

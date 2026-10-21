@@ -69,16 +69,14 @@
                  ============================================= -->
 
             <div class="sidebar-brand">
-                <span class="sidebar-school">
-                    ILLINOIS TECH
-                </span>
-                <h1>
-                    ALPFA IIT
-                </h1>
-                <span class="sidebar-studio">
-                    Newsletter Studio
-                </span>
-            </div>
+    <img src="assets/alpfaiitlogo.png" class="sidebar-logo" alt="ALPFA IIT logo">
+
+    <div class="alpfa-logo-title">ALPFA IIT</div>
+
+    <span class="sidebar-studio">
+        Newsletter Studio
+    </span>
+</div>
 
             <!-- =============================================
                  NAVIGATION
@@ -431,7 +429,20 @@
                                     ></textarea>
                                 </div>
 
-                                <!-- Optional Button -->
+                                
+<div class="form-group flyer-fields">
+  <label>Event Flyer / Image <span class="optional-label">Optional</span></label>
+  <input type="file" class="section-image-file" accept="image/png,image/jpeg,image/webp">
+  <button type="button" class="upload-flyer-button secondary-action-button">Upload Flyer</button>
+  <p class="flyer-status" aria-live="polite"></p>
+  <label>Or paste a public HTTPS image URL</label>
+  <input type="url" class="section-image-url" placeholder="https://...">
+  <label>Optional flyer click-through link</label>
+  <input type="url" class="section-image-link" placeholder="https://...">
+  <img class="section-image-preview" alt="Flyer preview" hidden>
+</div>
+
+<!-- Optional Button -->
 
                                 <div class="section-button-fields">
                                     <div class="form-group">
