@@ -358,6 +358,9 @@ if (recentNewslettersSection) {
 
     if (result.newslettersSent > 0 && result.latestNewsletter) {
 
+        // Remove empty-state styling when newsletters exist
+        recentNewslettersSection.classList.remove("empty-state");
+
         recentNewslettersSection.innerHTML = `
             <div class="recent-newsletter-item">
                 <h3>${result.latestNewsletter}</h3>
@@ -370,14 +373,15 @@ if (recentNewslettersSection) {
 
     } else {
 
+        // Restore empty-state styling when no newsletters exist
+        recentNewslettersSection.classList.add("empty-state");
+
         recentNewslettersSection.innerHTML = `
-            <div class="empty-state">
-                <h3>No newsletters yet</h3>
-                <p>
-                    Once you create and send your first newsletter,
-                    it will appear here.
-                </p>
-            </div>
+            <h3>No newsletters yet</h3>
+            <p>
+                Once you create and send your first newsletter,
+                it will appear here.
+            </p>
         `;
 
     }
