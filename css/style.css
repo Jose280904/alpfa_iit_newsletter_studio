@@ -2397,3 +2397,30 @@ body.preview-open {
 }
 /* Hide auth loading screen after session validation on all pages. */
 .dashboard-loading[hidden], .dashboard-app[hidden] { display: none !important; }
+
+/* ============================================================
+   CENTRAL WEB SERVICES FOOTER
+   ============================================================ */
+
+.cws-footer {
+    width: 100%;
+    padding: 20px 15px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8b95a5;
+    opacity: 0.7;
+    margin-top: auto;
+}
+
+.cws-footer span {
+    font-weight: 600;
+    color: #64748b;
+}
+
+/* Keep footer at the bottom of dashboard pages */
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
