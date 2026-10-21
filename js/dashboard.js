@@ -349,6 +349,40 @@ async function loadDashboardData() {
         latestNewsletter.textContent =
             result.latestNewsletter ||
             "None yet";
+
+            // Update the Recent Newsletters section
+const recentNewslettersSection =
+    document.getElementById("recentNewsletters");
+
+if (recentNewslettersSection) {
+
+    if (result.newslettersSent > 0 && result.latestNewsletter) {
+
+        recentNewslettersSection.innerHTML = `
+            <div class="recent-newsletter-item">
+                <h3>${result.latestNewsletter}</h3>
+                <p>Successfully sent newsletter</p>
+                <a href="newsletter-history.html">
+                    View Newsletter History →
+                </a>
+            </div>
+        `;
+
+    } else {
+
+        recentNewslettersSection.innerHTML = `
+            <div class="empty-state">
+                <h3>No newsletters yet</h3>
+                <p>
+                    Once you create and send your first newsletter,
+                    it will appear here.
+                </p>
+            </div>
+        `;
+
+    }
+
+}
     }
 
     /* --------------------------------------------------------
