@@ -1,0 +1,15 @@
+# Google Apps Script backend
+Code.gs
+*.gs
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local system files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/

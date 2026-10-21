@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC PAGE SETTINGS
+         ===================================================== -->
+
+    <!-- Allows normal text characters to display correctly -->
+    <meta charset="UTF-8">
+
+    <!-- Makes the website scale correctly on phones/tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Text shown on the browser tab -->
+    <title>ALPFA IIT Newsletter</title>
+
+    <!-- =====================================================
+         WEBSITE STYLESHEET
+         ===================================================== -->
+
+    <!-- Connects this page to our main CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- =====================================================
+         MAIN WEBSITE
+         ===================================================== -->
+
+    <main class="subscribe-page">
+
+        <!-- =================================================
+             SUBSCRIPTION CARD
+             ================================================= -->
+
+        <section class="subscribe-card">
+
+            <!-- =============================================
+                 ORGANIZATION HEADER
+                 ============================================= -->
+
+            <div class="organization-header">
+
+                <!--
+                    We will add the actual ALPFA IIT logo here
+                    later.
+
+                    For now we're using text so that we can
+                    build and test the layout first.
+                -->
+
+                <p class="organization-label">
+                    ILLINOIS INSTITUTE OF TECHNOLOGY
+                </p>
+                <h1>
+                    ALPFA IIT
+                </h1>
+            </div>
+
+            <!-- =============================================
+                 NEWSLETTER INTRODUCTION
+                 ============================================= -->
+
+            <div class="subscribe-intro">
+                <h2>
+                    Stay Connected.
+                </h2>
+                <p>
+                    Get ALPFA IIT updates delivered directly to
+                    your inbox. Stay informed about upcoming
+                    events, professional opportunities,
+                    scholarships, sponsors, and chapter
+                    announcements.
+                </p>
+            </div>
+
+            <!-- =============================================
+                 SUBSCRIPTION FORM
+                 ============================================= -->
+
+            <!--
+                JavaScript will eventually take the information
+                entered here and send it to our Google Apps
+                Script backend.
+
+                Apps Script will then save the subscriber in
+                our Google Sheet.
+            -->
+
+            <form id="subscribeForm">
+
+                <!-- NAME FIELD -->
+
+                <div class="form-group">
+                    <label for="subscriberName">
+                        Name
+                    </label>
+                    <input
+                        type="text"
+                        id="subscriberName"
+                        name="name"
+                        placeholder="Your name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <!-- EMAIL FIELD -->
+
+                <div class="form-group">
+                    <label for="subscriberEmail">
+                        Email Address
+                    </label>
+                    <input
+                        type="email"
+                        id="subscriberEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+                <!-- SUBSCRIBE BUTTON -->
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="subscribeButton"
+                >
+                    Subscribe
+                </button>
+                <!-- =========================================
+                     FORM MESSAGE
+                     ========================================= -->
+
+                <!--
+                    JavaScript will use this area to show
+                    messages such as:
+
+                    "You're subscribed!"
+
+                    or
+
+                    "That email is already subscribed."
+                -->
+                <p
+                    id="subscribeMessage"
+                    class="form-message"
+                    aria-live="polite"
+                ></p>
+            </form>
+
+            <!-- =============================================
+                 PRIVACY MESSAGE
+                 ============================================= -->
+
+            <p class="privacy-message">
+                By subscribing, you'll receive emails from
+                ALPFA IIT. You can unsubscribe at any time.
+            </p>
+
+            <!-- =============================================
+                 ADMIN LOGIN LINK
+                 ============================================= -->
+
+            <!--
+                Regular subscribers don't need accounts.
+
+                This small link will take ALPFA executive
+                board members to the separate login page.
+            -->
+
+            <div class="admin-link-container">
+                <a href="login.html" class="admin-link">
+                    Executive Board Login
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <!--
+        Handles the subscription form.
+        We're creating the file now, but we haven't added
+        its functionality yet.
+    -->
+
+    <script src="js/subscribe.js"></script>
+
+</body>
+</html>
