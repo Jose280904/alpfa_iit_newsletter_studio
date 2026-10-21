@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-    <!-- =====================================================
+<!-- =====================================================
          BASIC PAGE SETTINGS
          ===================================================== -->
-
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>Newsletter Studio | ALPFA IIT</title>
-
-    <!-- =====================================================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Studio | ALPFA IIT</title>
+<!-- =====================================================
          MAIN STYLESHEET
          ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+<link href="css/style.css" rel="stylesheet"/>
 </head>
-
 <body class="dashboard-body">
-
-
-    <!-- =====================================================
+<!-- =====================================================
          DASHBOARD LOADING SCREEN
          =====================================================
 
@@ -42,20 +30,15 @@
          If invalid:
          → User is sent back to login.html
          ===================================================== -->
-
-    <div
-        id="dashboardLoading"
-        class="dashboard-loading"
-    >
-        <div class="loading-content">
-            <h1>ALPFA IIT</h1>
-            <p>
+<div class="dashboard-loading" id="dashboardLoading">
+<div class="loading-content">
+<h1>ALPFA IIT</h1>
+<p>
                 Verifying Executive Board access...
             </p>
-        </div>
-    </div>
-
-    <!-- =====================================================
+</div>
+</div>
+<!-- =====================================================
          MAIN DASHBOARD APPLICATION
          =====================================================
 
@@ -64,386 +47,217 @@
          dashboard.js will display this ONLY after the backend
          confirms that the session is valid.
          ===================================================== -->
-
-    <div
-        id="dashboardApp"
-        class="dashboard-app"
-        hidden
-    >
-
-        <!-- =================================================
+<div class="dashboard-app" hidden="" id="dashboardApp">
+<!-- =================================================
              SIDEBAR
              ================================================= -->
-
-        <aside class="dashboard-sidebar">
-
-
-            <!-- =============================================
+<aside class="dashboard-sidebar">
+<!-- =============================================
                  SIDEBAR BRAND
                  ============================================= -->
-
-            <div class="sidebar-brand">
-                <span class="sidebar-school">
-                    ILLINOIS TECH
-                </span>
-                <h1>
-                    ALPFA IIT
-                </h1>
-                <span class="sidebar-studio">
-                    Newsletter Studio
-                </span>
-            </div>
-
-            <!-- =============================================
+<div class="sidebar-brand"><img alt="ALPFA IIT logo" class="sidebar-logo" src="assets/alpfaiitlogo.png"/><div class="alpfa-logo-title">ALPFA IIT</div><span class="sidebar-studio">Newsletter Studio</span></div>
+<!-- =============================================
                  DASHBOARD NAVIGATION
                  ============================================= -->
-
-            <nav class="dashboard-nav">
-
-
-                <!-- Dashboard -->
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link active"
-                >
-
-                    <span class="nav-icon">
-                        ◫
-                    </span>
-
-                    Dashboard
-
-                </a>
-
-                <!-- Create Newsletter -->
-
-                <a
-                    href="create-newsletter.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ✎
-                    </span>
-
-                    Create Newsletter
-
-                </a>
-
-
-                <!-- Subscribers -->
-                <a
-                    href="subscribers.html"
-                    class="dashboard-nav-link"
-                >
-
-                    <span class="nav-icon">
-                        ♙
-                    </span>
-
-                    Subscribers
-
-                </a>
-
-                <!-- Newsletter History -->
-
-                <a
-                    href="newsletter-history.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ◷
-                    </span>
-                    Newsletter History
-                </a>
-
-                <!-- Settings -->
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ⚙
-                    </span>
-                    Settings
-                </a>
-            </nav>
-
-            <!-- =============================================
+<nav class="dashboard-nav"><a class="dashboard-nav-link active" href="dashboard.html"><span class="nav-icon">◫</span> Dashboard</a><a class="dashboard-nav-link" href="create-newsletter.html"><span class="nav-icon">✎</span> Create Newsletter</a><a class="dashboard-nav-link" href="subscribers.html"><span class="nav-icon">♙</span> Subscribers</a><a class="dashboard-nav-link" href="newsletter-history.html"><span class="nav-icon">◷</span> Newsletter History</a><a class="dashboard-nav-link" href="settings.html"><span class="nav-icon">⚙</span> Settings</a></nav>
+<!-- =============================================
                  SIDEBAR BOTTOM
                  ============================================= -->
-
-            <div class="sidebar-bottom">
-                <button
-                    type="button"
-                    id="logoutButton"
-                    class="logout-button"
-                >
+<div class="sidebar-bottom">
+<button class="logout-button" id="logoutButton" type="button">
                     Log Out
                 </button>
-            </div>
-        </aside>
-
-        <!-- =================================================
+</div>
+</aside>
+<!-- =================================================
              MAIN CONTENT AREA
              ================================================= -->
-
-        <main class="dashboard-main">
-
-            <!-- =============================================
+<main class="dashboard-main">
+<!-- =============================================
                  TOP HEADER
                  ============================================= -->
-
-            <header class="dashboard-header">
-                <div>
-                    <p class="dashboard-eyebrow">
+<header class="dashboard-header">
+<div>
+<p class="dashboard-eyebrow">
                         NEWSLETTER STUDIO
                     </p>
-                    <h2>
+<h2>
                         Dashboard
                     </h2>
-                </div>
-
-                <a
-                    href="index.html"
-                    class="view-signup-link"
-                    target="_blank"
-                >
+</div>
+<a class="view-signup-link" href="index.html" target="_blank">
                     View Signup Page ↗
                 </a>
-            </header>
-
-            <!-- =============================================
+</header>
+<!-- =============================================
                  DASHBOARD CONTENT
                  ============================================= -->
-
-            <section class="dashboard-content">
-
-
-                <!-- =========================================
+<section class="dashboard-content">
+<!-- =========================================
                      WELCOME SECTION
                      ========================================= -->
-
-                <div class="dashboard-welcome">
-                    <div>
-                        <h3>
+<div class="dashboard-welcome">
+<div>
+<h3>
                             Welcome back.
                         </h3>
-                        <p>
+<p>
                             Manage ALPFA IIT newsletters,
                             subscribers, and announcements
                             from one place.
                         </p>
-                    </div>
-
-                    <a
-                        href="create-newsletter.html"
-                        class="primary-button dashboard-create-button dashboard-button-link"
-                    >
+</div>
+<a class="primary-button dashboard-create-button dashboard-button-link" href="create-newsletter.html">
                         + Create Newsletter
                     </a>
-                </div>
-
-                <!-- =========================================
+</div>
+<!-- =========================================
                      STATISTIC CARDS
                      ========================================= -->
-
-                <div class="dashboard-stats">
-
-
-                    <!-- Total Subscribers -->
-
-                    <article class="stat-card">
-                        <p class="stat-label">
+<div class="dashboard-stats">
+<!-- Total Subscribers -->
+<article class="stat-card">
+<p class="stat-label">
                             Active Subscribers
                         </p>
-
-                        <!--
+<!--
                             Eventually loaded automatically
                             from Google Sheets.
                         -->
-
-                        <strong
-                            class="stat-number"
-                            id="subscriberCount"
-                        >
+<strong class="stat-number" id="subscriberCount">
                             —
                         </strong>
-                        <span class="stat-description">
+<span class="stat-description">
                             Newsletter audience
                         </span>
-                    </article>
-
-                    <!-- Newsletters Sent -->
-
-                    <article class="stat-card">
-
-                        <p class="stat-label">
+</article>
+<!-- Newsletters Sent -->
+<article class="stat-card">
+<p class="stat-label">
                             Newsletters Sent
                         </p>
-                        <strong
-                            class="stat-number"
-                            id="newsletterCount"
-                        >
+<strong class="stat-number" id="newsletterCount">
                             —
                         </strong>
-
-                        <span class="stat-description">
+<span class="stat-description">
                             Total campaigns sent
                         </span>
-                    </article>
-
-                    <!-- Latest Newsletter -->
-
-                    <article class="stat-card">
-                        <p class="stat-label">
+</article>
+<!-- Latest Newsletter -->
+<article class="stat-card">
+<p class="stat-label">
                             Latest Newsletter
                         </p>
-                        <strong
-                            class="stat-number stat-text"
-                            id="latestNewsletter"
-                        >    
+<strong class="stat-number stat-text" id="latestNewsletter">    
                             —               
                         </strong>
-                        <span class="stat-description">
+<span class="stat-description">
                             Most recent campaign
                         </span>
-                    </article>
-                </div>
-
-                <!-- =========================================
+</article>
+</div>
+<!-- =========================================
                      QUICK ACTIONS
                      ========================================= -->
-
-                <div class="dashboard-section">
-
-                    <div class="section-heading">
-                        <div>
-                            <h3>
+<div class="dashboard-section">
+<div class="section-heading">
+<div>
+<h3>
                                 Quick Actions
                             </h3>
-
-                            <p>
+<p>
                                 What would you like to do?
                             </p>
-                        </div>
-                    </div>
-
-                    <div class="quick-actions">
-
-                        <!-- Create Newsletter -->
-
-                        <button
-                            type="button"
-                            class="quick-action-card"
-                        >
-                            <span class="quick-action-icon">
+</div>
+</div>
+<div class="quick-actions">
+<!-- Create Newsletter -->
+<button class="quick-action-card" type="button">
+<span class="quick-action-icon">
                                 ✎
                             </span>
-                            <span class="quick-action-content">
-                                <strong>
+<span class="quick-action-content">
+<strong>
                                     Create Newsletter
                                 </strong>
-                                <span>
+<span>
                                     Build and send a new
                                     newsletter.
                                 </span>
-                            </span>
-                        </button>
-
-                        <!-- Subscribers -->
-
-                        <a
-                            href="subscribers.html"
-                            class="quick-action-card dashboard-button-link"
-                        >
-                            <span class="quick-action-icon">
+</span>
+</button>
+<!-- Subscribers -->
+<a class="quick-action-card dashboard-button-link" href="subscribers.html">
+<span class="quick-action-icon">
                                 ♙
                             </span>
-                            <span class="quick-action-content">
-                                <strong>
+<span class="quick-action-content">
+<strong>
                                     Manage Subscribers
                                 </strong>
-                                <span>
+<span>
                                     View and manage your
                                     mailing list.
                                 </span>
-                            </span>
-                        </a>
-
-                        <!-- History -->
-
-                        <button
-                            type="button"
-                            class="quick-action-card"
-                        >
-
-                            <span class="quick-action-icon">
+</span>
+</a>
+<!-- History -->
+<button class="quick-action-card" type="button">
+<span class="quick-action-icon">
                                 ◷
                             </span>
-                            <span class="quick-action-content">
-                                <strong>
+<span class="quick-action-content">
+<strong>
                                     Newsletter History
                                 </strong>
-                                <span>
+<span>
                                     View previously sent
                                     newsletters.
                                 </span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- =========================================
+</span>
+</button>
+</div>
+</div>
+<!-- =========================================
                      RECENT NEWSLETTERS
                      ========================================= -->
-
-                <div class="dashboard-section">
-                    <div class="section-heading">
-                        <div>
-                            <h3>
+<div class="dashboard-section">
+<div class="section-heading">
+<div>
+<h3>
                                 Recent Newsletters
                             </h3>
-                            <p>
+<p>
                                 Your latest newsletter activity.
                             </p>
-                        </div>
-                    </div>
-
-                    <!--
+</div>
+</div>
+<!--
                         This is a placeholder.
 
                         Later, JavaScript will automatically
                         populate this section from the
                         Newsletters tab in Google Sheets.
                     -->
-
-                    <div
-                        id="recentNewsletters"
-                        class="empty-state"
-                    >
-                        <div class="empty-state-icon">
+<div class="empty-state" id="recentNewsletters">
+<div class="empty-state-icon">
                             ✉
                         </div>
-                        <h4>
+<h4>
                             No newsletters yet
                         </h4>
-                        <p>
+<p>
                             Once you create and send your first
                             newsletter, it will appear here.
                         </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- =====================================================
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- =====================================================
          DASHBOARD JAVASCRIPT
          ===================================================== -->
-
-    <script src="js/dashboard.js"></script>
-
+<script src="js/dashboard.js"></script>
 </body>
 </html>

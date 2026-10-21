@@ -1,32 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <!-- =====================================================
+<!-- =====================================================
          BASIC PAGE SETTINGS
          ===================================================== -->
-
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>Create Newsletter | ALPFA IIT</title>
-
-    <!-- =====================================================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Newsletter | ALPFA IIT</title>
+<!-- =====================================================
          MAIN STYLESHEET
          ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+<link href="css/style.css" rel="stylesheet"/>
 </head>
-
 <body class="dashboard-body">
-
-    <!-- =====================================================
+<!-- =====================================================
          AUTHENTICATION LOADING SCREEN
          =====================================================
 
@@ -34,357 +22,193 @@
          the editor until Apps Script confirms that the user
          has a valid Executive Board session.
          ===================================================== -->
-
-    <div
-        id="newsletterLoading"
-        class="dashboard-loading"
-    >
-        <div class="loading-content">
-            <h1>ALPFA IIT</h1>
-            <p>
+<div class="dashboard-loading" id="newsletterLoading">
+<div class="loading-content">
+<h1>ALPFA IIT</h1>
+<p>
                 Verifying Executive Board access...
             </p>
-        </div>
-    </div>
-
-
-    <!-- =====================================================
+</div>
+</div>
+<!-- =====================================================
          NEWSLETTER APPLICATION
          ===================================================== -->
-
-    <div
-        id="newsletterApp"
-        class="dashboard-app"
-        hidden
-    >
-
-        <!-- =================================================
+<div class="dashboard-app" hidden="" id="newsletterApp">
+<!-- =================================================
              SIDEBAR
              ================================================= -->
-
-        <aside class="dashboard-sidebar">
-
-            <!-- =============================================
+<aside class="dashboard-sidebar">
+<!-- =============================================
                  BRAND
                  ============================================= -->
-
-            <div class="sidebar-brand">
-    <img src="assets/alpfaiitlogo.png" class="sidebar-logo" alt="ALPFA IIT logo">
-
-    <div class="alpfa-logo-title">ALPFA IIT</div>
-
-    <span class="sidebar-studio">
-        Newsletter Studio
-    </span>
-</div>
-
-            <!-- =============================================
+<div class="sidebar-brand"><img alt="ALPFA IIT logo" class="sidebar-logo" src="assets/alpfaiitlogo.png"/><div class="alpfa-logo-title">ALPFA IIT</div><span class="sidebar-studio">Newsletter Studio</span></div>
+<!-- =============================================
                  NAVIGATION
                  ============================================= -->
-
-            <nav class="dashboard-nav">
-                <a
-                    href="dashboard.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ◫
-                    </span>
-                    Dashboard
-                </a>
-
-                <a
-                    href="create-newsletter.html"
-                    class="dashboard-nav-link active"
-                >
-                    <span class="nav-icon">
-                        ✎
-                    </span>
-                    Create Newsletter
-                </a>
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ♙
-                    </span>
-
-                    Subscribers
-
-                </a>
-
-                <a
-                    href="newsletter-history.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ◷
-                    </span>
-                    Newsletter History
-                </a>
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ⚙
-                    </span>
-                    Settings
-                </a>
-            </nav>
-
-            <!-- =============================================
+<nav class="dashboard-nav"><a class="dashboard-nav-link" href="dashboard.html"><span class="nav-icon">◫</span> Dashboard</a><a class="dashboard-nav-link active" href="create-newsletter.html"><span class="nav-icon">✎</span> Create Newsletter</a><a class="dashboard-nav-link" href="subscribers.html"><span class="nav-icon">♙</span> Subscribers</a><a class="dashboard-nav-link" href="newsletter-history.html"><span class="nav-icon">◷</span> Newsletter History</a><a class="dashboard-nav-link" href="settings.html"><span class="nav-icon">⚙</span> Settings</a></nav>
+<!-- =============================================
                  LOG OUT
                  ============================================= -->
-
-            <div class="sidebar-bottom">
-                <button
-                    type="button"
-                    id="logoutButton"
-                    class="logout-button"
-                >
+<div class="sidebar-bottom">
+<button class="logout-button" id="logoutButton" type="button">
                     Log Out
                 </button>
-            </div>
-        </aside>
-
-
-        <!-- =================================================
+</div>
+</aside>
+<!-- =================================================
              MAIN CONTENT
              ================================================= -->
-
-        <main class="dashboard-main">
-
-            <!-- =============================================
+<main class="dashboard-main">
+<!-- =============================================
                  PAGE HEADER
                  ============================================= -->
-
-            <header class="dashboard-header">
-                <div>
-                    <p class="dashboard-eyebrow">
+<header class="dashboard-header">
+<div>
+<p class="dashboard-eyebrow">
                         NEWSLETTER STUDIO
                     </p>
-                    <h2>
+<h2>
                         Create Newsletter
                     </h2>
-                </div>
-
-                <a
-                    href="dashboard.html"
-                    class="view-signup-link"
-                >
+</div>
+<a class="view-signup-link" href="dashboard.html">
                     ← Dashboard
                 </a>
-            </header>
-
-            <!-- =============================================
+</header>
+<!-- =============================================
                  NEWSLETTER EDITOR
                  ============================================= -->
-
-            <section class="newsletter-editor-container">
-
-                <!-- =========================================
+<section class="newsletter-editor-container">
+<!-- =========================================
                      EDITOR INTRODUCTION
                      ========================================= -->
-
-                <div class="newsletter-editor-heading">
-                    <div>
-                        <h3>
+<div class="newsletter-editor-heading">
+<div>
+<h3>
                             New Newsletter
                         </h3>
-                        <p>
+<p>
                             Build an email for your ALPFA IIT
                             subscribers.
                         </p>
-                    </div>
-
-                    <!--
+</div>
+<!--
                         This will eventually show whether the
                         newsletter is unsaved, saved, etc.
                     -->
-
-                    <span
-                        id="draftStatus"
-                        class="draft-status"
-                    >
+<span class="draft-status" id="draftStatus">
                         Unsaved
                     </span>
-                </div>
-
-                <!-- =========================================
+</div>
+<!-- =========================================
                      NEWSLETTER FORM
                      ========================================= -->
-
-                <form id="newsletterForm">
-
-                    <!-- =====================================
+<form id="newsletterForm">
+<!-- =====================================
                          EMAIL INFORMATION CARD
                          ===================================== -->
-
-                    <section class="editor-card">
-                        <div class="editor-card-heading">
-                            <span class="editor-step">
+<section class="editor-card">
+<div class="editor-card-heading">
+<span class="editor-step">
                                 01
                             </span>
-                            <div>
-                                <h4>
+<div>
+<h4>
                                     Email Information
                                 </h4>
-                                <p>
+<p>
                                     Information subscribers
                                     will see in their inbox.
                                 </p>
-                            </div>
-                        </div>
-
-                        <!-- Email Subject -->
-
-                        <div class="form-group">
-                            <label for="emailSubject">
+</div>
+</div>
+<!-- Email Subject -->
+<div class="form-group">
+<label for="emailSubject">
                                 Email Subject
                             </label>
-                            <input
-                                type="text"
-                                id="emailSubject"
-                                name="emailSubject"
-                                placeholder="ALPFA IIT Weekly Newsletter"
-                                maxlength="150"
-                                required
-                            >
-                        </div>
-
-                        <!-- Preview Text -->
-
-                        <div class="form-group">
-                            <label for="previewText">
+<input id="emailSubject" maxlength="150" name="emailSubject" placeholder="ALPFA IIT Weekly Newsletter" required="" type="text"/>
+</div>
+<!-- Preview Text -->
+<div class="form-group">
+<label for="previewText">
                                 Preview Text
                             </label>
-                            <input
-                                type="text"
-                                id="previewText"
-                                name="previewText"
-                                placeholder="Events, opportunities, and updates from ALPFA IIT..."
-                                maxlength="200"
-                            >
-                            <span class="field-help">
+<input id="previewText" maxlength="200" name="previewText" placeholder="Events, opportunities, and updates from ALPFA IIT..." type="text"/>
+<span class="field-help">
                                 This may appear next to the
                                 subject line in a subscriber's
                                 inbox.
                             </span>
-                        </div>
-                    </section>
-
-                    <!-- =====================================
+</div>
+</section>
+<!-- =====================================
                          NEWSLETTER INTRODUCTION CARD
                          ===================================== -->
-
-                    <section class="editor-card">
-
-                        <div class="editor-card-heading">
-
-                            <span class="editor-step">
+<section class="editor-card">
+<div class="editor-card-heading">
+<span class="editor-step">
                                 02
                             </span>
-
-                            <div>
-
-                                <h4>
+<div>
+<h4>
                                     Newsletter Introduction
                                 </h4>
-
-                                <p>
+<p>
                                     Create the opening of your
                                     newsletter.
                                 </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Newsletter Title -->
-
-                        <div class="form-group">
-
-                            <label for="newsletterTitle">
+</div>
+</div>
+<!-- Newsletter Title -->
+<div class="form-group">
+<label for="newsletterTitle">
                                 Newsletter Title
                             </label>
-                            <input
-                                type="text"
-                                id="newsletterTitle"
-                                name="newsletterTitle"
-                                placeholder="This Week at ALPFA IIT"
-                                maxlength="150"
-                                required
-                            >
-                        </div>
-
-                        <!-- Opening Message -->
-
-                        <div class="form-group">
-                            <label for="openingMessage">
+<input id="newsletterTitle" maxlength="150" name="newsletterTitle" placeholder="This Week at ALPFA IIT" required="" type="text"/>
+</div>
+<!-- Opening Message -->
+<div class="form-group">
+<label for="openingMessage">
                                 Opening Message
                             </label>
-                            <textarea
-                                id="openingMessage"
-                                name="openingMessage"
-                                rows="6"
-                                placeholder="Welcome ALPFA IIT members! Here's what's happening this week..."
-                                required
-                            ></textarea>
-                        </div>
-                    </section>
-
-
-                    <!-- =====================================
+<textarea id="openingMessage" name="openingMessage" placeholder="Welcome ALPFA IIT members! Here's what's happening this week..." required="" rows="6"></textarea>
+</div>
+</section>
+<!-- =====================================
                          NEWSLETTER SECTIONS CARD
                          ===================================== -->
-
-                    <section class="editor-card">
-                        <div class="editor-card-heading">
-                            <span class="editor-step">
+<section class="editor-card">
+<div class="editor-card-heading">
+<span class="editor-step">
                                 03
                             </span>
-                            <div>
-                                <h4>
+<div>
+<h4>
                                     Newsletter Sections
                                 </h4>
-                                <p>
+<p>
                                     Add events, opportunities,
                                     announcements, and other
                                     updates.
                                 </p>
-                            </div>
-                        </div>
-
-                        <!--
+</div>
+</div>
+<!--
                             JavaScript will place all newsletter
                             sections inside this container.
                         -->
-
-                        <div id="newsletterSections">
-
-                            <!-- =================================
+<div id="newsletterSections">
+<!-- =================================
                                  FIRST DEFAULT SECTION
                                  ================================= -->
-
-                            <div
-                                class="newsletter-section"
-                                data-section-id="1"
-                            >
-
-                                <!-- Section Header -->
-
-                                <div class="newsletter-section-header">
-
-                                    <strong>
+<div class="newsletter-section" data-section-id="1">
+<!-- Section Header -->
+<div class="newsletter-section-header">
+<strong>
                                         Section 1
                                     </strong>
-
-                                    <!--
+<!--
                                         The first section starts
                                         without a Remove button.
 
@@ -392,170 +216,92 @@
                                         removing additional
                                         sections later.
                                     -->
-
-                                </div>
-
-                                <!-- Section Title -->
-
-                                <div class="form-group">
-
-                                    <label>
+</div>
+<!-- Section Title -->
+<div class="form-group">
+<label>
                                         Section Title
                                     </label>
-
-                                    <input
-                                        type="text"
-                                        class="section-title-input"
-                                        placeholder="Upcoming Events"
-                                        maxlength="150"
-                                        required
-                                    >
-
-                                </div>
-
-                                <!-- Section Description -->
-
-                                <div class="form-group">
-
-                                    <label>
+<input class="section-title-input" maxlength="150" placeholder="Upcoming Events" required="" type="text"/>
+</div>
+<!-- Section Description -->
+<div class="form-group">
+<label>
                                         Description
                                     </label>
-
-                                    <textarea
-                                        class="section-description-input"
-                                        rows="5"
-                                        placeholder="Tell subscribers about this update..."
-                                        required
-                                    ></textarea>
-                                </div>
-
-                                
-<div class="form-group flyer-fields">
-  <label>Event Flyer / Image <span class="optional-label">Optional</span></label>
-  <input type="file" class="section-image-file" accept="image/png,image/jpeg,image/webp">
-  <button type="button" class="upload-flyer-button secondary-action-button">Upload Flyer</button>
-  <p class="flyer-status" aria-live="polite"></p>
-  <label>Or paste a public HTTPS image URL</label>
-  <input type="url" class="section-image-url" placeholder="https://...">
-  <label>Optional flyer click-through link</label>
-  <input type="url" class="section-image-link" placeholder="https://...">
-  <img class="section-image-preview" alt="Flyer preview" hidden>
+<textarea class="section-description-input" placeholder="Tell subscribers about this update..." required="" rows="5"></textarea>
 </div>
-
+<div class="form-group flyer-fields">
+<label>Event Flyer / Image <span class="optional-label">Optional</span></label>
+<input accept="image/png,image/jpeg,image/webp" class="section-image-file" type="file"/>
+<button class="upload-flyer-button secondary-action-button" type="button">Upload Flyer</button>
+<p aria-live="polite" class="flyer-status"></p>
+<label>Or paste a public HTTPS image URL</label>
+<input class="section-image-url" placeholder="https://..." type="url"/>
+<label>Optional flyer click-through link</label>
+<input class="section-image-link" placeholder="https://..." type="url"/>
+<img alt="Flyer preview" class="section-image-preview" hidden=""/>
+</div>
 <!-- Optional Button -->
-
-                                <div class="section-button-fields">
-                                    <div class="form-group">
-                                        <label>
+<div class="section-button-fields">
+<div class="form-group">
+<label>
                                             Button Text
                                             <span class="optional-label">
                                                 Optional
                                             </span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            class="section-button-text-input"
-                                            placeholder="Register Here"
-                                            maxlength="60"
-                                        >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
+</label>
+<input class="section-button-text-input" maxlength="60" placeholder="Register Here" type="text"/>
+</div>
+<div class="form-group">
+<label>
                                             Button Link
                                             <span class="optional-label">
                                                 Optional
                                             </span>
-                                        </label>
-                                        <input
-                                            type="url"
-                                            class="section-button-url-input"
-                                            placeholder="https://..."
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- =================================
+</label>
+<input class="section-button-url-input" placeholder="https://..." type="url"/>
+</div>
+</div>
+</div>
+</div>
+<!-- =================================
                              ADD SECTION BUTTON
                              ================================= -->
-
-                        <button
-                            type="button"
-                            id="addSectionButton"
-                            class="add-section-button"
-                        >
+<button class="add-section-button" id="addSectionButton" type="button">
                             + Add Another Section
                         </button>
-
-                    </section>
-
-
-                    <!-- =====================================
+</section>
+<!-- =====================================
                          NEWSLETTER ACTION
                          ===================================== -->
-
-                    <section class="newsletter-actions">
-
-                        <!-- Send Test Button -->
-
-                        <button
-                        type="button"
-                        id="sendTestEmailButton"
-                        class="secondary-action-button"
-                    >
+<section class="newsletter-actions">
+<!-- Send Test Button -->
+<button class="secondary-action-button" id="sendTestEmailButton" type="button">
                         Send Test Email
                     </button>
-
-                        <!-- Save Draft -->
-
-                        <button
-                            type="button"
-                            id="saveDraftButton"
-                            class="secondary-action-button"
-                        >
+<!-- Save Draft -->
+<button class="secondary-action-button" id="saveDraftButton" type="button">
                             Save Draft
                         </button>
-
-                        <!-- Preview -->
-
-                        <button
-                            type="button"
-                            id="previewNewsletterButton"
-                            class="secondary-action-button"
-                        >
+<!-- Preview -->
+<button class="secondary-action-button" id="previewNewsletterButton" type="button">
                             Preview Newsletter
                         </button>
-
-                        <!-- Send -->
-
-                        <button
-                            type="button"
-                            id="sendNewsletterButton"
-                            class="primary-action-button"
-                        >
+<!-- Send -->
+<button class="primary-action-button" id="sendNewsletterButton" type="button">
                             Send Newsletter
                         </button>
-                    </section>
-            </section>
-
-                        
-                    <!-- =====================================
+</section>
+</form></section>
+<!-- =====================================
                          EDITOR STATUS MESSAGE
                          ===================================== -->
+<p aria-live="polite" class="form-message newsletter-message" id="newsletterMessage"></p>
 
-                    <p
-                        id="newsletterMessage"
-                        class="form-message newsletter-message"
-                        aria-live="polite"
-                    ></p>
 
-                </form>
-            </section>
-        </main>
-    </div>
-
+</main>
+</div>
 <!-- =========================================================
      NEWSLETTER PREVIEW MODAL
      =========================================================
@@ -566,110 +312,72 @@
      JavaScript will generate the newsletter using whatever
      information is currently entered in the editor.
      ========================================================= -->
-
-<div
-    id="previewModal"
-    class="preview-modal"
-    hidden
->
-
-    <!-- Dark background behind preview -->
-
-    <div
-        id="previewBackdrop"
-        class="preview-backdrop"
-    ></div>
-
-    <!-- Preview Window -->
-
-    <div class="preview-window">
-
-        <!-- =============================================
+<div class="preview-modal" hidden="" id="previewModal">
+<!-- Dark background behind preview -->
+<div class="preview-backdrop" id="previewBackdrop"></div>
+<!-- Preview Window -->
+<div class="preview-window">
+<!-- =============================================
              PREVIEW HEADER
              ============================================= -->
-
-        <div class="preview-header">
-            <div>
-                <p class="preview-eyebrow">
+<div class="preview-header">
+<div>
+<p class="preview-eyebrow">
                     EMAIL PREVIEW
                 </p>
-                <h3>
+<h3>
                     Newsletter Preview
                 </h3>
-            </div>
-
-            <button
-                type="button"
-                id="closePreviewButton"
-                class="preview-close-button"
-                aria-label="Close newsletter preview"
-            >
+</div>
+<button aria-label="Close newsletter preview" class="preview-close-button" id="closePreviewButton" type="button">
                 ×
             </button>
-        </div>
-
-        <!-- =============================================
+</div>
+<!-- =============================================
              EMAIL INFORMATION
              =============================================
 
              Shows what the subscriber would see in their
              inbox before opening the email.
              ============================================= -->
-
-        <div class="preview-email-info">
-            <div class="preview-email-row">
-                <span>
+<div class="preview-email-info">
+<div class="preview-email-row">
+<span>
                     Subject
                 </span>
-                <strong id="previewSubject">
+<strong id="previewSubject">
                     —
                 </strong>
-            </div>
-
-            <div class="preview-email-row">
-                <span>
+</div>
+<div class="preview-email-row">
+<span>
                     Preview
                 </span>
-                <strong id="previewPreheader">
+<strong id="previewPreheader">
                     —
                 </strong>
-            </div>
-        </div>
-
-        <!-- =============================================
+</div>
+</div>
+<!-- =============================================
              EMAIL CANVAS
              ============================================= -->
-
-        <div class="preview-canvas-area">
-
-            <!--
+<div class="preview-canvas-area">
+<!--
                 newsletter.js will generate the actual email
                 inside this container.
             -->
-
-            <div
-                id="emailPreview"
-                class="email-preview"
-            ></div>
-        </div>
-
-        <!-- =============================================
+<div class="email-preview" id="emailPreview"></div>
+</div>
+<!-- =============================================
              PREVIEW FOOTER
              ============================================= -->
-
-        <div class="preview-footer">
-            <button
-                type="button"
-                id="closePreviewFooterButton"
-                class="secondary-action-button"
-            >
+<div class="preview-footer">
+<button class="secondary-action-button" id="closePreviewFooterButton" type="button">
                 Close Preview
             </button>
-        </div>
-    </div>
 </div>
-
-    <script src="js/newsletter.js"></script>
-
+</div>
+</div>
+<script src="js/newsletter.js"></script>
 </body>
 </html>

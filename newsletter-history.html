@@ -1,361 +1,186 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <!-- =====================================================
+<!-- =====================================================
          BASIC PAGE SETTINGS
          ===================================================== -->
-
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>Newsletter History | ALPFA IIT</title>
-
-    <!-- Main stylesheet -->
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter History | ALPFA IIT</title>
+<!-- Main stylesheet -->
+<link href="css/style.css" rel="stylesheet"/>
 </head>
-
 <body class="dashboard-body">
-
-    <!-- =====================================================
+<!-- =====================================================
          AUTHENTICATION LOADING SCREEN
          =====================================================
 
          The history page stays hidden until Apps Script
          verifies the Executive Board session.
          ===================================================== -->
-
-    <div
-        id="historyLoading"
-        class="dashboard-loading"
-    >
-        <div class="loading-content">
-            <h1>ALPFA IIT</h1>
-            <p>
+<div class="dashboard-loading" id="historyLoading">
+<div class="loading-content">
+<h1>ALPFA IIT</h1>
+<p>
                 Verifying Executive Board access...
             </p>
-        </div>
-    </div>
-
-    <!-- =====================================================
+</div>
+</div>
+<!-- =====================================================
          HISTORY APPLICATION
          ===================================================== -->
-
-    <div
-        id="historyApp"
-        class="dashboard-app"
-        hidden
-    >
-
-        <!-- =================================================
+<div class="dashboard-app" hidden="" id="historyApp">
+<!-- =================================================
              SIDEBAR
              ================================================= -->
-
-        <aside class="dashboard-sidebar">
-
-            <!-- Brand -->
-
-            <div class="sidebar-brand">
-
-                <span class="sidebar-school">
-                    ILLINOIS TECH
-                </span>
-                <h1>
-                    ALPFA IIT
-                </h1>
-                <span class="sidebar-studio">
-                    Newsletter Studio
-                </span>
-            </div>
-
-            <!-- Navigation -->
-
-            <nav class="dashboard-nav">
-
-                <!-- Dashboard -->
-
-                <a
-                    href="dashboard.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ◫
-                    </span>
-                    Dashboard
-                </a>
-
-                <!-- Create Newsletter -->
-
-                <a
-                    href="create-newsletter.html"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ✎
-                    </span>
-                    Create Newsletter
-                </a>
-
-                <!-- Subscribers -->
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ♙
-                    </span>
-                    Subscribers
-                </a>
-
-                <!-- Newsletter History -->
-
-                <a
-                    href="newsletter-history.html"
-                    class="dashboard-nav-link active"
-                >
-                    <span class="nav-icon">
-                        ◷
-                    </span>
-                    Newsletter History
-                </a>
-
-                <!-- Settings -->
-
-                <a
-                    href="#"
-                    class="dashboard-nav-link"
-                >
-                    <span class="nav-icon">
-                        ⚙
-                    </span>
-                    Settings
-                </a>
-            </nav>
-
-            <!-- Logout -->
-
-            <div class="sidebar-bottom">
-                <button
-                    type="button"
-                    id="logoutButton"
-                    class="logout-button"
-                >
+<aside class="dashboard-sidebar">
+<!-- Brand -->
+<div class="sidebar-brand"><img alt="ALPFA IIT logo" class="sidebar-logo" src="assets/alpfaiitlogo.png"/><div class="alpfa-logo-title">ALPFA IIT</div><span class="sidebar-studio">Newsletter Studio</span></div>
+<!-- Navigation -->
+<nav class="dashboard-nav"><a class="dashboard-nav-link" href="dashboard.html"><span class="nav-icon">◫</span> Dashboard</a><a class="dashboard-nav-link" href="create-newsletter.html"><span class="nav-icon">✎</span> Create Newsletter</a><a class="dashboard-nav-link" href="subscribers.html"><span class="nav-icon">♙</span> Subscribers</a><a class="dashboard-nav-link active" href="newsletter-history.html"><span class="nav-icon">◷</span> Newsletter History</a><a class="dashboard-nav-link" href="settings.html"><span class="nav-icon">⚙</span> Settings</a></nav>
+<!-- Logout -->
+<div class="sidebar-bottom">
+<button class="logout-button" id="logoutButton" type="button">
 
                     Log Out
                 </button>
-            </div>
-        </aside>
-
-        <!-- =================================================
+</div>
+</aside>
+<!-- =================================================
              MAIN CONTENT
              ================================================= -->
-
-        <main class="dashboard-main">
-
-            <!-- =============================================
+<main class="dashboard-main">
+<!-- =============================================
                  PAGE HEADER
                  ============================================= -->
-
-            <header class="dashboard-header">
-                <div>
-                    <p class="dashboard-eyebrow">
+<header class="dashboard-header">
+<div>
+<p class="dashboard-eyebrow">
                         NEWSLETTER STUDIO
                     </p>
-                    <h2>
+<h2>
                         Newsletter History
                     </h2>
-                </div>
-                <a
-                    href="create-newsletter.html"
-                    class="primary-button dashboard-button-link"
-                >
+</div>
+<a class="primary-button dashboard-button-link" href="create-newsletter.html">
                     + Create Newsletter
                 </a>
-            </header>
-
-            <!-- =============================================
+</header>
+<!-- =============================================
                  HISTORY CONTENT
                  ============================================= -->
-
-            <section class="history-content">
-
-                <!-- =========================================
+<section class="history-content">
+<!-- =========================================
                      PAGE INTRO
                      ========================================= -->
-
-                <div class="history-heading">
-                    <div>
-                        <h3>
+<div class="history-heading">
+<div>
+<h3>
                             Your Newsletters
                         </h3>
-                        <p>
+<p>
                             View drafts and previously sent
                             newsletters.
                         </p>
-                    </div>
-
-                    <!-- Newsletter count -->
-
-                    <span
-                        id="historyCount"
-                        class="history-count"
-                    >
+</div>
+<!-- Newsletter count -->
+<span class="history-count" id="historyCount">
                         —
                     </span>
-                </div>
-
-                <!-- =========================================
+</div>
+<!-- =========================================
                      FILTER BUTTONS
                      ========================================= -->
-
-                <div class="history-filters">
-                    <button
-                        type="button"
-                        class="history-filter active"
-                        data-filter="all"
-                    >
+<div class="history-filters">
+<button class="history-filter active" data-filter="all" type="button">
                         All
                     </button>
-
-                    <button
-                        type="button"
-                        class="history-filter"
-                        data-filter="draft"
-                    >
+<button class="history-filter" data-filter="draft" type="button">
                         Drafts
                     </button>
-
-                    <button
-                        type="button"
-                        class="history-filter"
-                        data-filter="sent"
-                    >
+<button class="history-filter" data-filter="sent" type="button">
                         Sent
                     </button>
-                </div>
-
-                <!-- =========================================
+</div>
+<!-- =========================================
                      NEWSLETTER LIST CARD
                      ========================================= -->
-
-                <section class="history-card">
-
-                    <!-- =====================================
+<section class="history-card">
+<!-- =====================================
                          LOADING STATE
                          ===================================== -->
-
-                    <div
-                        id="historyListLoading"
-                        class="history-state"
-                    >
-                        <p>
+<div class="history-state" id="historyListLoading">
+<p>
                             Loading newsletters...
                         </p>
-                    </div>
-
-                    <!-- =====================================
+</div>
+<!-- =====================================
                          EMPTY STATE
                          =====================================
 
                          JavaScript will display this when no
                          newsletters match the selected filter.
                          ===================================== -->
-
-                    <div
-                        id="historyEmpty"
-                        class="history-state"
-                        hidden
-                    >
-                        <h4>
+<div class="history-state" hidden="" id="historyEmpty">
+<h4>
                             No newsletters yet
                         </h4>
-                        <p>
+<p>
                             Create your first ALPFA IIT
                             newsletter to get started.
                         </p>
-
-                        <a
-                            href="create-newsletter.html"
-                            class="primary-button dashboard-button-link"
-                        >
+<a class="primary-button dashboard-button-link" href="create-newsletter.html">
                             Create Newsletter
                         </a>
-                    </div>
-
-
-                    <!-- =====================================
+</div>
+<!-- =====================================
                          NEWSLETTER TABLE
                          ===================================== -->
-
-                    <div
-                        id="historyTableContainer"
-                        class="history-table-container"
-                        hidden
-                    >
-                        <table class="history-table">
-                            <thead>
-                                <tr>
-                                    <th>
+<div class="history-table-container" hidden="" id="historyTableContainer">
+<table class="history-table">
+<thead>
+<tr>
+<th>
                                         Newsletter
                                     </th>
-                                    <th>
+<th>
                                         Status
                                     </th>
-                                    <th>
+<th>
                                         Created
                                     </th>
-                                    <th>
+<th>
                                         Sent
                                     </th>
-                                    <th>
+<th>
                                         Recipients
                                     </th>
-                                    <th>
+<th>
                                         Actions
                                     </th>
-                                </tr>
-                            </thead>
-
-                            <!--
+</tr>
+</thead>
+<!--
                                 JavaScript will create the rows
                                 using newsletter data returned
                                 by Google Sheets.
                             -->
-
-                            <tbody id="historyTableBody">
-                            </tbody>
-                        </table>
-                    </div>
-
-                </section>
-
-                <!-- =========================================
+<tbody id="historyTableBody">
+</tbody>
+</table>
+</div>
+</section>
+<!-- =========================================
                      PAGE MESSAGE
                      ========================================= -->
-
-                <p
-                    id="historyMessage"
-                    class="form-message history-message"
-                    aria-live="polite"
-                ></p>
-
-            </section>
-        </main>
-    </div>
-
-    <!-- =====================================================
+<p aria-live="polite" class="form-message history-message" id="historyMessage"></p>
+</section>
+</main>
+</div>
+<!-- =====================================================
          HISTORY JAVASCRIPT
          ===================================================== -->
-
-    <script src="js/history.js"></script>
-
+<script src="js/history.js"></script>
 </body>
 </html>

@@ -2395,3 +2395,5 @@ body.preview-open {
     text-align: center;
     margin: 8px 0 4px;
 }
+/* Hide auth loading screen after session validation on all pages. */
+.dashboard-loading[hidden], .dashboard-app[hidden] { display: none !important; }

@@ -25,7 +25,7 @@ async function load(){message("Loading subscribers...");try{const r=await reques
 async function remove(s){if(!confirm(`Unsubscribe ${s.email}? They will no longer receive newsletters.`))return;message("Updating...");try{const r=await request("removeSubscriberAdmin",{subscriberId:s.id});if(!r.success)throw Error(r.message||"Unable to unsubscribe.");await load();message(r.message);}catch(e){message(e.message);}}
 document.addEventListener("DOMContentLoaded",async()=>{
  if(!token()){location.replace("login.html");return;}
- try{const r=await request("validateSession");if(!r.success||!r.authenticated){location.replace("login.html");return;}el("dashboardLoading").style.display="none";el("dashboardApp").hidden=false;await load();}catch(e){message(e.message);}
+ try{const r=await request("validateSession");if(!r.success||!r.authenticated){location.replace("login.html");return;}el("dashboardLoading").style.display="none";el("dashboardApp").hidden=false;await load();}catch(e){if(!token())return;el("dashboardLoading").hidden=true;el("dashboardApp").hidden=false;message("Unable to verify session. Check your connection and refresh.");}
  el("searchInput").addEventListener("input",render);
  el("refreshButton").addEventListener("click",load);
  el("logoutButton").addEventListener("click",()=>{sessionStorage.removeItem("alpfaAdminSession");location.replace("login.html");});
