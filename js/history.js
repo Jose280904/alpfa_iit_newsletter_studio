@@ -687,6 +687,18 @@ function createNewsletterRow(newsletter) {
         actionLink
     );
 
+    if (status === "draft") {
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Delete Draft";
+        deleteButton.className = "history-action-button history-delete-button";
+        deleteButton.style.marginLeft = "8px";
+        deleteButton.style.color = "#b42318";
+        deleteButton.style.cursor = "pointer";
+        deleteButton.addEventListener("click", () => deleteNewsletterDraft(newsletter, deleteButton));
+        actionCell.appendChild(deleteButton);
+    }
+
     /* --------------------------------------------------------
        ADD CELLS TO ROW
        -------------------------------------------------------- */
@@ -837,4 +849,36 @@ function logoutAndRedirect() {
     window.location.replace(
         "login.html"
     );
+}
+
+/* Delete only drafts; the backend independently enforces this rule. */
+async function deleteNewsletterDraft(newsletter, button) {
+    if (String(newsletter.status).toLowerCase() !== "draft") return;
+    const confirmed = window.confirm(
+        `Permanently delete the draft "${newsletter.title || newsletter.subject || "Untitled Newsletter"}"? This cannot be undone.`
+    );
+    if (!confirmed) return;
+    const token = sessionStorage.getItem("alpfaAdminSession");
+    if (!token) { logoutAndRedirect(); return; }
+    button.disabled = true;
+    button.textContent = "Deleting...";
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {"Content-Type": "text/plain;charset=utf-8"},
+            body: JSON.stringify({action:"deleteNewsletterDraft", sessionToken:token, newsletterId:newsletter.id})
+        });
+        const result = await response.json();
+        if (result.authenticated === false) { logoutAndRedirect(); return; }
+        if (!result.success) throw new Error(result.message || "Unable to delete draft.");
+        newsletterHistory = newsletterHistory.filter(item => item.id !== newsletter.id);
+        updateHistoryCount();
+        renderNewsletterHistory();
+        showHistoryMessage(result.message || "Draft deleted successfully.", "success");
+    } catch (error) {
+        console.error("Delete draft failed:", error);
+        showHistoryMessage(error.message || "Deletion failed. Refresh history before trying again.", "error");
+        button.disabled = false;
+        button.textContent = "Delete Draft";
+    }
 }
