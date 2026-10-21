@@ -289,10 +289,18 @@
                             Preview Newsletter
                         </button>
 <!-- Send -->
+<button class="secondary-action-button" id="scheduleSendButton" type="button">Schedule Send</button>
 <button class="primary-action-button" id="sendNewsletterButton" type="button">
                             Send Newsletter
                         </button>
 </section>
+<div id="scheduleSendPanel" hidden style="margin:18px 0;padding:18px;border:1px solid #cbd5e1;border-radius:12px;background:#f8fafc">
+<label for="scheduleSendTime" style="display:block;font-weight:600;margin-bottom:8px">Send date and time (Chicago local time)</label>
+<input id="scheduleSendTime" type="datetime-local" style="padding:10px;max-width:280px;width:100%" />
+<button id="confirmScheduleButton" type="button" class="primary-action-button" style="margin:10px">Confirm Schedule</button>
+<button id="closeScheduleButton" type="button" class="secondary-action-button">Cancel</button>
+<p style="font-size:12px;color:#64748b">Use your device's Chicago time zone. Delivery starts approximately at the selected time.</p>
+</div>
 </form></section>
 <!-- =====================================
                          EDITOR STATUS MESSAGE

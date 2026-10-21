@@ -183,9 +183,16 @@ async function showNewsletterBuilder() {
     */
 
     if (newsletterId) {
-        await loadNewsletterDraft(
-            newsletterId
-        );
+        await loadNewsletterDraft(newsletterId);
+        if (urlParameters.get("view") === "1" && draftStatus.textContent === "Saved") {
+            document.querySelectorAll("#newsletterForm input, #newsletterForm textarea, #newsletterForm button").forEach(el => el.disabled = true);
+            ["saveDraftButton", "sendNewsletterButton", "sendTestEmailButton", "scheduleSendButton", "addSectionButton"].forEach(id => {
+                const el = document.getElementById(id); if (el) el.hidden = true;
+            });
+            previewNewsletterButton.disabled = false;
+            previewNewsletterButton.click();
+            previewNewsletterButton.disabled = true;
+        }
     }
 }
 
@@ -1877,3 +1884,36 @@ document.addEventListener("click", async function(e) {
   } catch(error) { status.textContent = error.message || "Upload failed."; }
   finally { button.disabled = false; }
 });
+
+/* Schedule Send: persists UTC timestamp; browser should be set to Chicago time. */
+const scheduleSendButton = document.getElementById("scheduleSendButton");
+const scheduleSendPanel = document.getElementById("scheduleSendPanel");
+if (scheduleSendButton && scheduleSendPanel) {
+  scheduleSendButton.addEventListener("click", () => {
+    if (!currentNewsletterId || draftStatus.classList.contains("unsaved")) {
+      showNewsletterMessage("Save your latest newsletter changes before scheduling.", "error"); return;
+    }
+    scheduleSendPanel.hidden = false;
+  });
+  document.getElementById("closeScheduleButton").addEventListener("click", () => { scheduleSendPanel.hidden = true; });
+  document.getElementById("confirmScheduleButton").addEventListener("click", async event => {
+    const raw = document.getElementById("scheduleSendTime").value;
+    const time = new Date(raw);
+    if (!raw || !Number.isFinite(time.getTime()) || time.getTime() < Date.now()+60000) {
+      showNewsletterMessage("Choose a future date/time at least a minute away.", "error"); return;
+    }
+    if (Intl.DateTimeFormat().resolvedOptions().timeZone !== "America/Chicago") {
+      showNewsletterMessage("Set your device time zone to Chicago before scheduling.", "error"); return;
+    }
+    if (!window.confirm("Schedule this newsletter for " + time.toLocaleString("en-US", {timeZone:"America/Chicago",dateStyle:"full",timeStyle:"short"}) + " Chicago time?")) return;
+    const button = event.currentTarget; button.disabled = true;
+    try {
+      const response = await fetch(API_URL, {method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"scheduleNewsletter",sessionToken:sessionStorage.getItem("alpfaAdminSession"),newsletterId:currentNewsletterId,scheduledFor:time.toISOString()})});
+      const result = await response.json();
+      if (result.authenticated === false) { logoutAndRedirect(); return; }
+      showNewsletterMessage(result.message || "Scheduling failed.",result.success?"success":"error");
+      if (result.success) { scheduleSendPanel.hidden = true; scheduleSendButton.disabled = true; sendNewsletterButton.disabled = true; draftStatus.textContent = "Scheduled"; }
+    } catch (error) { showNewsletterMessage("Could not confirm schedule. Check History before retrying.","error"); }
+    finally { button.disabled = false; }
+  });
+}

@@ -552,7 +552,7 @@ function createNewsletterRow(newsletter) {
         (
             status === "sent"
                 ? "sent"
-                : "draft"
+                : status === "draft" ? "draft" : "scheduled"
         );
 
 
@@ -662,30 +662,36 @@ function createNewsletterRow(newsletter) {
         actionLink.textContent =
             "View";
 
-        /*
-           We have not built the sent newsletter viewer yet,
-           so this button is temporarily disabled.
-        */
-
-        actionLink.href =
-            "#";
-
-        actionLink.addEventListener(
-            "click",
-            function (event) {
-                event.preventDefault();
-
-                showHistoryMessage(
-                    "Sent newsletter viewing will be added next.",
-                    ""
-                );
-            }
-        );
+        actionLink.href = "create-newsletter.html?id=" + encodeURIComponent(newsletter.id) + "&view=1";
     }
 
-    actionCell.appendChild(
-        actionLink
-    );
+    actionCell.appendChild(actionLink);
+    if (status === "scheduled") {
+      const cancel = document.createElement("button");
+      cancel.type = "button";
+      cancel.className = "history-action-button";
+      cancel.textContent = "Cancel Schedule";
+      cancel.style.marginLeft = "8px";
+      cancel.addEventListener("click", async () => {
+        if (!confirm("Cancel this scheduled newsletter and return it to Draft?")) return;
+        cancel.disabled = true;
+        try {
+          const response = await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"cancelNewsletterSchedule",sessionToken:sessionStorage.getItem("alpfaAdminSession"),newsletterId:newsletter.id})});
+          const result = await response.json();
+          if (result.authenticated === false) { logoutAndRedirect(); return; }
+          if (!result.success) throw new Error(result.message || "Unable to cancel.");
+          await loadNewsletterHistory();
+          showHistoryMessage("Schedule canceled. You can now edit the draft.","success");
+        } catch(error) { showHistoryMessage(error.message || "Cancellation failed.","error"); cancel.disabled = false; }
+      });
+      actionCell.appendChild(cancel);
+      if (newsletter.scheduledFor) {
+        const when = document.createElement("div");
+        when.style.cssText = "font-size:11px;margin-top:6px;color:#64748b";
+        when.textContent = "Scheduled: " + new Date(newsletter.scheduledFor).toLocaleString("en-US",{timeZone:"America/Chicago",dateStyle:"medium",timeStyle:"short"}) + " CT";
+        actionCell.appendChild(when);
+      }
+    }
 
     if (status === "draft") {
         const deleteButton = document.createElement("button");
